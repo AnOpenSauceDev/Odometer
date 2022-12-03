@@ -1,0 +1,195 @@
+---- Minecraft Crash Report ----
+// Who set us up the TNT?
+
+Time: 2022-11-29 17:51:35
+Description: Ticking entity
+
+java.lang.NullPointerException: Cannot invoke "net.minecraft.server.MinecraftServer.getLootManager()" because the return value of "net.minecraft.world.World.getServer()" is null
+	at net.minecraft.entity.LivingEntity.dropLoot(LivingEntity.java:1345)
+	at net.minecraft.entity.LivingEntity.drop(LivingEntity.java:1313)
+	at net.minecraft.entity.player.PlayerEntity.onDeath(PlayerEntity.java:538)
+	at me.wolfie.odometer.listener.ServerListener.KillPlayer(ServerListener.java:16)
+	at net.minecraft.entity.player.PlayerEntity.handler$zdc000$Tick(PlayerEntity.java:3623)
+	at net.minecraft.entity.player.PlayerEntity.tick(PlayerEntity.java)
+	at net.minecraft.client.network.ClientPlayerEntity.tick(ClientPlayerEntity.java:217)
+	at net.minecraft.client.world.ClientWorld.tickEntity(ClientWorld.java:258)
+	at net.minecraft.world.World.tickEntity(World.java:465)
+	at net.minecraft.client.world.ClientWorld.method_32124(ClientWorld.java:243)
+	at net.minecraft.world.EntityList.forEach(EntityList.java:78)
+	at net.minecraft.client.world.ClientWorld.tickEntities(ClientWorld.java:239)
+	at net.minecraft.client.MinecraftClient.tick(MinecraftClient.java:1654)
+	at net.minecraft.client.MinecraftClient.render(MinecraftClient.java:1071)
+	at net.minecraft.client.MinecraftClient.run(MinecraftClient.java:752)
+	at net.minecraft.client.main.Main.main(Main.java:220)
+	at net.minecraft.client.main.Main.main(Main.java:56)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:461)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at net.minecraft.entity.LivingEntity.dropLoot(LivingEntity.java:1345)
+	at net.minecraft.entity.LivingEntity.drop(LivingEntity.java:1313)
+	at net.minecraft.entity.player.PlayerEntity.onDeath(PlayerEntity.java:538)
+	at me.wolfie.odometer.listener.ServerListener.KillPlayer(ServerListener.java:16)
+	at net.minecraft.entity.player.PlayerEntity.handler$zdc000$Tick(PlayerEntity.java:3623)
+	at net.minecraft.entity.player.PlayerEntity.tick(PlayerEntity.java)
+	at net.minecraft.client.network.ClientPlayerEntity.tick(ClientPlayerEntity.java:217)
+	at net.minecraft.client.world.ClientWorld.tickEntity(ClientWorld.java:258)
+	at net.minecraft.world.World.tickEntity(World.java:465)
+	at net.minecraft.client.world.ClientWorld.method_32124(ClientWorld.java:243)
+	at net.minecraft.world.EntityList.forEach(EntityList.java:78)
+	at net.minecraft.client.world.ClientWorld.tickEntities(ClientWorld.java:239)
+
+-- Entity being ticked --
+Details:
+	Entity Type: minecraft:player (net.minecraft.client.network.ClientPlayerEntity)
+	Entity ID: 93
+	Entity Name: Player146
+	Entity's Exact location: -605.62, 68.18, -187.22
+	Entity's Block location: World: (-606,68,-188), Section: (at 2,4,4 in -38,4,-12; chunk contains blocks -608,-64,-192 to -593,319,-177), Region: (-2,-1; contains chunks -64,-32 to -33,-1, blocks -1024,-64,-512 to -513,319,-1)
+	Entity's Momentum: -0.17, -0.15, -0.20
+	Entity's Passengers: []
+	Entity's Vehicle: null
+Stacktrace:
+	at net.minecraft.world.World.tickEntity(World.java:465)
+	at net.minecraft.client.world.ClientWorld.method_32124(ClientWorld.java:243)
+	at net.minecraft.world.EntityList.forEach(EntityList.java:78)
+	at net.minecraft.client.world.ClientWorld.tickEntities(ClientWorld.java:239)
+	at net.minecraft.client.MinecraftClient.tick(MinecraftClient.java:1654)
+	at net.minecraft.client.MinecraftClient.render(MinecraftClient.java:1071)
+	at net.minecraft.client.MinecraftClient.run(MinecraftClient.java:752)
+	at net.minecraft.client.main.Main.main(Main.java:220)
+	at net.minecraft.client.main.Main.main(Main.java:56)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:461)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+
+-- Affected level --
+Details:
+	All players: 1 total; [ClientPlayerEntity['Player146'/93, l='ClientLevel', x=-605.62, y=68.18, z=-187.22]]
+	Chunk stats: 961, 609
+	Level dimension: minecraft:overworld
+	Level spawn location: World: (-48,73,-16), Section: (at 0,9,0 in -3,4,-1; chunk contains blocks -48,-64,-16 to -33,319,-1), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,-64,-512 to -1,319,-1)
+	Level time: 38211 game time, 38211 day time
+	Server brand: fabric
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.world.ClientWorld.addDetailsToCrashReport(ClientWorld.java:424)
+	at net.minecraft.client.MinecraftClient.addDetailsToCrashReport(MinecraftClient.java:2093)
+	at net.minecraft.client.MinecraftClient.run(MinecraftClient.java:770)
+	at net.minecraft.client.main.Main.main(Main.java:220)
+	at net.minecraft.client.main.Main.main(Main.java:56)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:461)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
+
+-- Last reload --
+Details:
+	Reload number: 1
+	Reload reason: initial
+	Finished: Yes
+	Packs: Default, Fabric Mods
+
+-- System Details --
+Details:
+	Minecraft Version: 1.19.2
+	Minecraft Version ID: 1.19.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 17.0.3, Eclipse Adoptium
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Eclipse Adoptium
+	Memory: 1474176512 bytes (1405 MiB) / 2910846976 bytes (2776 MiB) up to 4282384384 bytes (4084 MiB)
+	CPUs: 6
+	Processor Vendor: AuthenticAMD
+	Processor Name: AMD Ryzen 5 3500X 6-Core Processor             
+	Identifier: AuthenticAMD Family 23 Model 113 Stepping 0
+	Microarchitecture: unknown
+	Frequency (GHz): 3.59
+	Number of physical packages: 1
+	Number of physical CPUs: 6
+	Number of logical CPUs: 6
+	Graphics card #0 name: NVIDIA GeForce RTX 3060 Ti
+	Graphics card #0 vendor: NVIDIA (0x10de)
+	Graphics card #0 VRAM (MB): 4095.00
+	Graphics card #0 deviceId: 0x2489
+	Graphics card #0 versionInfo: DriverVersion=31.0.15.1659
+	Memory slot #0 capacity (MB): 16384.00
+	Memory slot #0 clockSpeed (GHz): 3.20
+	Memory slot #0 type: DDR4
+	Virtual memory max (MB): 32200.75
+	Virtual memory used (MB): 20869.04
+	Swap memory total (MB): 15872.00
+	Swap memory used (MB): 815.27
+	JVM Flags: 0 total; 
+	Fabric Mods: 
+		fabric-api: Fabric API 0.67.1+1.19.2
+		fabric-api-base: Fabric API Base 0.4.13+0d0f210290
+		fabric-api-lookup-api-v1: Fabric API Lookup API (v1) 1.6.12+93d8cb8290
+		fabric-biome-api-v1: Fabric Biome API (v1) 9.0.20+0d0f210290
+		fabric-block-api-v1: Fabric Block API (v1) 1.0.1+12bfe4ea90
+		fabric-blockrenderlayer-v1: Fabric BlockRenderLayer Registration (v1) 1.1.22+c6af733c90
+		fabric-client-tags-api-v1: Fabric Client Tags 1.0.3+b35fea8390
+		fabric-command-api-v2: Fabric Command API (v2) 2.1.9+93d8cb8290
+		fabric-content-registries-v0: Fabric Content Registries (v0) 3.4.3+6064db2a90
+		fabric-convention-tags-v1: Fabric Convention Tags 1.1.3+93d8cb8290
+		fabric-crash-report-info-v1: Fabric Crash Report Info (v1) 0.2.7+aeb40ebe90
+		fabric-data-generation-api-v1: Fabric Data Generation API (v1) 5.3.1+ad31814d90
+		fabric-dimensions-v1: Fabric Dimensions API (v1) 2.1.33+0d0f210290
+		fabric-entity-events-v1: Fabric Entity Events (v1) 1.5.2+9244241690
+		fabric-events-interaction-v0: Fabric Events Interaction (v0) 0.4.30+c6af733c90
+		fabric-game-rule-api-v1: Fabric Game Rule API (v1) 1.0.23+c6af733c90
+		fabric-gametest-api-v1: Fabric Game Test API (v1) 1.1.4+704e47e990
+		fabric-item-api-v1: Fabric Item API (v1) 1.6.1+fa140d5990
+		fabric-item-groups-v0: Fabric Item Groups (v0) 0.3.35+9244241690
+		fabric-key-binding-api-v1: Fabric Key Binding API (v1) 1.0.23+aaaf9d3390
+		fabric-lifecycle-events-v1: Fabric Lifecycle Events (v1) 2.2.2+9244241690
+		fabric-loot-api-v2: Fabric Loot API (v2) 1.1.9+83a8659290
+		fabric-message-api-v1: Fabric Message API (v1) 5.0.5+93d8cb8290
+		fabric-mining-level-api-v1: Fabric Mining Level API (v1) 2.1.20+33fbc73890
+		fabric-models-v0: Fabric Models (v0) 0.3.19+c6af733c90
+		fabric-networking-api-v1: Fabric Networking API (v1) 1.2.7+9244241690
+		fabric-object-builder-api-v1: Fabric Object Builder API (v1) 4.1.2+06e0e25190
+		fabric-particles-v1: Fabric Particles (v1) 1.0.12+79adfe0a90
+		fabric-registry-sync-v0: Fabric Registry Sync (v0) 0.9.28+9244241690
+		fabric-renderer-api-v1: Fabric Renderer API (v1) 1.0.14+12bfe4ea90
+		fabric-renderer-indigo: Fabric Renderer - Indigo 0.6.16+aeb40ebe90
+		fabric-rendering-data-attachment-v1: Fabric Rendering Data Attachment (v1) 0.3.17+0d0f210290
+		fabric-rendering-fluids-v1: Fabric Rendering Fluids (v1) 3.0.9+c6af733c90
+		fabric-rendering-v1: Fabric Rendering (v1) 1.11.1+73145abb90
+		fabric-resource-conditions-api-v1: Fabric Resource Conditions API (v1) 2.1.1+aae9039d90
+		fabric-resource-loader-v0: Fabric Resource Loader (v0) 0.8.1+0d0f210290
+		fabric-screen-api-v1: Fabric Screen API (v1) 1.0.29+0d0f210290
+		fabric-screen-handler-api-v1: Fabric Screen Handler API (v1) 1.3.3+1cc24b1b90
+		fabric-sound-api-v1: Fabric Sound API (v1) 1.0.1+c4f28df590
+		fabric-textures-v0: Fabric Textures (v0) 1.0.22+aeb40ebe90
+		fabric-transfer-api-v1: Fabric Transfer API (v1) 2.1.3+9d081d6490
+		fabric-transitive-access-wideners-v1: Fabric Transitive Access Wideners (v1) 1.3.2+42d99c3290
+		fabricloader: Fabric Loader 0.14.10
+		java: OpenJDK 64-Bit Server VM 17
+		minecraft: Minecraft 1.19.2
+		odometer: Health Odometer 1.0-SNAPSHOT
+	Launched Version: Fabric
+	Backend library: LWJGL version 3.3.1 SNAPSHOT
+	Backend API: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2 GL version 3.2.0 NVIDIA 516.59, NVIDIA Corporation
+	Window size: 1920x1017
+	GL Caps: Using framebuffer using OpenGL 3.2
+	GL debug messages: 
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fabric'; Server brand changed to 'fabric'
+	Type: Integrated Server (map_client.txt)
+	Graphics mode: fancy
+	Resource Packs: Fabric Mods
+	Current Language: English (US)
+	CPU: 6x AMD Ryzen 5 3500X 6-Core Processor 
+	Server Running: false
+	Player Count: 0 / 8; []
+	Data Packs: vanilla, Fabric Mods
+	World Generation: Stable

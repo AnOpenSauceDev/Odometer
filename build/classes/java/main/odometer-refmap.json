@@ -1,0 +1,20 @@
+{
+  "mappings": {
+    "me/wolfie/odometer/mixins/RegenMixin": {
+      "render": "Lnet/minecraft/class_442;method_25394(Lnet/minecraft/class_4587;IIF)V"
+    },
+    "me/wolfie/odometer/mixins/TickHandle": {
+      "tick": "Lnet/minecraft/class_1657;method_5773()V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "me/wolfie/odometer/mixins/RegenMixin": {
+        "render": "Lnet/minecraft/class_442;method_25394(Lnet/minecraft/class_4587;IIF)V"
+      },
+      "me/wolfie/odometer/mixins/TickHandle": {
+        "tick": "Lnet/minecraft/class_1657;method_5773()V"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:dark_forest": "2022-11-27 20:17:18 +1000",
+      "minecraft:river": "2022-11-27 20:17:12 +1000",
+      "minecraft:old_growth_spruce_taiga": "2022-11-27 20:16:39 +1000"
+    },
+    "done": false
+  },
+  "DataVersion": 3120
+}

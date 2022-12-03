@@ -1,0 +1,9 @@
+{
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:frozen_ocean": "2022-11-27 13:05:56 +1000"
+    },
+    "done": false
+  },
+  "DataVersion": 3120
+}

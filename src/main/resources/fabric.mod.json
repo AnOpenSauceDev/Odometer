@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "odometer",
+  "version": "${version}",
+  "name": "Health Odometer",
+  "description": "Just like the game!",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/odometer/icon.png",
+  "environment": "*",
+  "accessWidener": "odometer.accesswidener",
+  "entrypoints": {
+    "modmenu": [ "me.wolfie.odometer.external.ModMenuIntegration" ],
+
+    "client": [
+      "me.wolfie.odometer.client.OdometerClient"
+    ],
+    "main": [
+      "me.wolfie.odometer.Odometer"
+    ]
+  },
+  "mixins": [
+    "odometer.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_by_something": "2022-11-27 12:56:59 +1000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:snowy_plains": "2022-11-27 12:53:07 +1000",
+      "minecraft:snowy_beach": "2022-11-27 12:57:01 +1000",
+      "minecraft:windswept_gravelly_hills": "2022-11-27 12:57:33 +1000"
+    },
+    "done": false
+  },
+  "DataVersion": 3120
+}

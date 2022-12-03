@@ -1,0 +1,9 @@
+{
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:windswept_gravelly_hills": "2022-11-29 18:11:16 +1000"
+    },
+    "done": false
+  },
+  "DataVersion": 3120
+}

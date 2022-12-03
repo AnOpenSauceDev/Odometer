@@ -1,0 +1,10 @@
+{
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:birch_forest": "2022-12-01 06:58:02 +1000",
+      "minecraft:old_growth_spruce_taiga": "2022-12-01 17:13:11 +1000"
+    },
+    "done": false
+  },
+  "DataVersion": 3120
+}
