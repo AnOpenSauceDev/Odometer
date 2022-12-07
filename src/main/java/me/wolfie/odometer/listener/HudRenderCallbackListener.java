@@ -22,14 +22,10 @@ public class HudRenderCallbackListener implements HudRenderCallback {
 
     //texture for the health container
     Identifier contid = new Identifier("odometer","textures/gui/container.png");
+    Identifier mortallywounded = new Identifier("odometer", "textures/gui/container_fatal.png");
 
     @Override
     public void onHudRender(MatrixStack matrixStack, float tickDelta) {
-        /*
-        Sprite Container; // a recreation of the HP bar from EarthBound
-        Identifier containerID = new Identifier("odometer","container")
-        Container = new Sprite(new SpriteAtlasTexture(containerID), new  Sprite.Info(containerID,32,32, AnimationResourceMetadata.EMPTY),1,32,32,10,10, new NativeImage(32,32,false));
-         */
 
 
         if (HealthMap.get(MinecraftClient.getInstance().getSession().getUuid()) != null) {
@@ -39,8 +35,11 @@ public class HudRenderCallbackListener implements HudRenderCallback {
 
             MinecraftClient client = MinecraftClient.getInstance();
 
-
-            RenderTexture(matrixStack,tickDelta,contid,width,height, width - 275, height - 86, 82, 64 ); // box
+            if(MinecraftClient.getInstance().player.getHealth() - HealthMap.get(MinecraftClient.getInstance().getSession().getUuid()) > 0) {
+                RenderTexture(matrixStack, tickDelta, contid, width, height, width - 275, height - 86, 82, 64); // box
+            }else {
+                RenderTexture(matrixStack, tickDelta, mortallywounded, width, height, width - 275, height - 86, 82, 64); // box
+            }
 
             // various status indicators
             RenderTexture(matrixStack,tickDelta,new Identifier("textures/particle/heart.png"),width,height,width - 260, height - 68, 8, 8); // health

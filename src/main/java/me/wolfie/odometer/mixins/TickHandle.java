@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.logging.Logger;
 
 import static me.wolfie.odometer.Odometer.*;
 
@@ -32,7 +31,6 @@ public class TickHandle {
 
                 //MinecraftClient.getInstance().player.setHealth(MinecraftClient.getInstance().player.getHealth());
                 if(MinecraftClient.getInstance().player.getHealth() >= 1) {
-                    // THIS CODE IS DISGUSTING, FIX IT LATER OR ELSE 😡😡😡😡😡😡😡😡😡 🤬🤬🤬🤬🤬
                     if (HealthMap.get(MinecraftClient.getInstance().getSession().getUuid()) != 0) {
                         if (HealthMap.get(MinecraftClient.getInstance().getSession().getUuid()) > 0) {
                             MinecraftClient.getInstance().player.setHealth(MinecraftClient.getInstance().player.getHealth() - (1 / 20F) /* / DecaySpeed */); // set to value. 1/20 because of ticks!!!
