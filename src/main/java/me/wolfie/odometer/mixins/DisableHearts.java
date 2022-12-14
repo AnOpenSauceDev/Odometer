@@ -35,12 +35,7 @@ public class DisableHearts { //... and hunger
      * @reason disable health the ~~quick way~~ nevermind it took forever
      */
 
-    /*
-    @Overwrite
-    private void drawHeart(MatrixStack matrices, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart) {
-        return;
-    }
-*/
+
     @Overwrite
     private void renderStatusBars(MatrixStack matrices) {
        //used to be some effort, then i gave up. (10/10 play ngl)
