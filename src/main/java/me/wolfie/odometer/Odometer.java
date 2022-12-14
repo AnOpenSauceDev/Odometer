@@ -19,7 +19,7 @@ public class Odometer implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("odometer");
 
     public static float DecaySpeed; // the rate at which we lose health
-    String VERSION = "V1.2";
+    String VERSION = "1.3";
     public static HashMap<String,Double> HealthMap = new HashMap<>(); // String = UUID, Double = final health (what we go down to)
 
     @Override
@@ -40,7 +40,7 @@ public class Odometer implements ModInitializer {
         
 
          */
-        LOGGER.info("Odometer: " + VERSION + " Got loaded...");
+        LOGGER.info("Odometer Version: " + VERSION + " Got loaded...");
         ServerTickEvents.END_SERVER_TICK.register(new ServerListener());
         HudRenderCallback.EVENT.register(new HudRenderCallbackListener());
     }
