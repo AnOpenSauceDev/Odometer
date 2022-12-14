@@ -15,16 +15,12 @@ public class ServerListener implements ServerTickEvents.EndTick{
     boolean dead = false;
     public static MinecraftServer minecraftServer;
     public static void KillPlayer(PlayerEntity Player){
-
         ServerPlayerEntity serverPlayerEntity = minecraftServer.getPlayerManager().getPlayer(Player.getUuid());
-
         if(!serverPlayerEntity.isDead()) {
             serverPlayerEntity.setHealth(0);
             HealthMap.put(serverPlayerEntity.getUuidAsString(),0.0);
             serverPlayerEntity.onDeath(DamageSource.OUT_OF_WORLD);
         }
-
-
 
     }
 
@@ -32,8 +28,7 @@ public class ServerListener implements ServerTickEvents.EndTick{
 
     @Override
     public void onEndTick(MinecraftServer server) {
-        minecraftServer = server;
-
+        minecraftServer = server; // declare server
     }
 
 

@@ -47,7 +47,7 @@ public class HudRenderCallbackListener implements HudRenderCallback {
             RenderTexture(matrixStack,tickDelta,new Identifier("textures/item/bread.png"),width,height,width - 260, height - 58, 8, 8); // food
             RenderTexture(matrixStack,tickDelta,new Identifier("textures/item/experience_bottle.png"),width,height,width - 260, height - 38, 8, 8); // level
             // WARNING: ORDER MATTERS... A LOT
-
+            // bad order will create many overlaps, so be careful
             client.textRenderer.draw(matrixStack, Text.of(MinecraftClient.getInstance().getSession().getUsername()), Math.toIntExact((long) (width - 259)), height - 77, 0xFFFFFF);
             client.textRenderer.draw(matrixStack, Text.of((Math.round(MinecraftClient.getInstance().player.getHealth())) + " (" + (Math.round(MinecraftClient.getInstance().player.getHealth() + client.player.getAbsorptionAmount() - HealthMap.get(client.getSession().getUuid()))) + ")"), Math.toIntExact((long) (width - 250)), height - 68, 0xFFFFFF);
             client.textRenderer.draw(matrixStack, Text.of(String.valueOf(Math.round(MinecraftClient.getInstance().player.getHungerManager().getFoodLevel()))), Math.toIntExact((long) (width - 250)), height - 58, 0xFFFFFF);
