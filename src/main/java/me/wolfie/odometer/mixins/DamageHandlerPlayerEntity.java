@@ -53,14 +53,6 @@ public abstract class DamageHandlerPlayerEntity {
                 return;
             }
 
-            if(source.isOutOfWorld()){
-
-
-                ServerListener.KillPlayer(Player);
-
-
-
-            }
 
             LivingEntity playerLivingEntity = (LivingEntity) Player;  // player = extended LivingEntity
 
