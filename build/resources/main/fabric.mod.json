@@ -11,11 +11,6 @@
   "environment": "*",
   "accessWidener": "odometer.accesswidener",
   "entrypoints": {
-    "modmenu": [ "me.wolfie.odometer.external.ModMenuIntegration" ],
-
-    "client": [
-      "me.wolfie.odometer.client.OdometerClient"
-    ],
     "main": [
       "me.wolfie.odometer.Odometer"
     ]
