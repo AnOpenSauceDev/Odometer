@@ -24,7 +24,7 @@ public abstract class RegenMixin {
     public void WarnPlayer(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci){
         int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
         int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
-        TitleScreen.drawCenteredText(matrices, MinecraftClient.getInstance().textRenderer, Text.of("Notice: Rolling Health is best with NaturalRegeneration OFF.")/*(width - 100), (height - 100)*/,250,height - 250, 0xFFFFFF);
+        TitleScreen.drawCenteredText(matrices, MinecraftClient.getInstance().textRenderer, Text.of("Notice: Rolling Health is best with NaturalRegeneration OFF."),250,height - 250, 0xFFFFFF);
     }
 
 
