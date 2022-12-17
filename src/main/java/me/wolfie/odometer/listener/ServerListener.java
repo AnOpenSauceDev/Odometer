@@ -10,12 +10,12 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import static me.wolfie.odometer.Odometer.HealthMap;
 
 
-//imagine doing spigot-esque code...
 public class ServerListener implements ServerTickEvents.EndTick{
     boolean dead = false;
     public static MinecraftServer minecraftServer;
     public static void KillPlayer(PlayerEntity Player){
         ServerPlayerEntity serverPlayerEntity = minecraftServer.getPlayerManager().getPlayer(Player.getUuid());
+        //kind of redundant
         if(!serverPlayerEntity.isDead()) {
             serverPlayerEntity.setHealth(0);
             HealthMap.put(serverPlayerEntity.getUuidAsString(),0.0);

@@ -1,7 +1,5 @@
 package me.wolfie.odometer;
 
-import me.shedaniel.clothconfig2.api.ConfigBuilder;
-import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.wolfie.odometer.listener.HudRenderCallbackListener;
 import me.wolfie.odometer.listener.ServerListener;
 import net.fabricmc.api.ModInitializer;
