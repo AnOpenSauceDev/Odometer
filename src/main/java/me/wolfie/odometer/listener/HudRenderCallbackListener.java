@@ -2,6 +2,8 @@ package me.wolfie.odometer.listener;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.wolfie.odometer.Odometer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -18,6 +20,7 @@ import net.minecraft.util.Identifier;
 
 import static me.wolfie.odometer.Odometer.HealthMap;
 
+@Environment(EnvType.CLIENT)
 public class HudRenderCallbackListener implements HudRenderCallback {
 
     //texture for the health container
@@ -46,8 +49,11 @@ public class HudRenderCallbackListener implements HudRenderCallback {
             RenderTexture(matrixStack,tickDelta,new Identifier("textures/particle/bubble.png"),width,height,width - 260, height - 48, 8, 8); // air
             RenderTexture(matrixStack,tickDelta,new Identifier("textures/item/bread.png"),width,height,width - 260, height - 58, 8, 8); // food
             RenderTexture(matrixStack,tickDelta,new Identifier("textures/item/experience_bottle.png"),width,height,width - 260, height - 38, 8, 8); // level
-            // WARNING: ORDER MATTERS... A LOT
+
+            // WARNING: ORDER MATTERS... A LOT!
             // bad order will create many overlaps, so be careful
+
+            //text block
             client.textRenderer.draw(matrixStack, Text.of(MinecraftClient.getInstance().getSession().getUsername()), Math.toIntExact((long) (width - 259)), height - 77, 0xFFFFFF);
             client.textRenderer.draw(matrixStack, Text.of((Math.round(MinecraftClient.getInstance().player.getHealth())) + " (" + (Math.round(MinecraftClient.getInstance().player.getHealth() + client.player.getAbsorptionAmount() - HealthMap.get(client.getSession().getUuid()))) + ")"), Math.toIntExact((long) (width - 250)), height - 68, 0xFFFFFF);
             client.textRenderer.draw(matrixStack, Text.of(String.valueOf(Math.round(MinecraftClient.getInstance().player.getHungerManager().getFoodLevel()))), Math.toIntExact((long) (width - 250)), height - 58, 0xFFFFFF);
@@ -58,12 +64,10 @@ public class HudRenderCallbackListener implements HudRenderCallback {
 
     public  void RenderTexture(MatrixStack matrixStack,float tickDelta,Identifier id, int width, int height, int x, int y, int scaleX, int scaleY){
         matrixStack.push();
-        // RenderSystem.enableBlend();
         RenderSystem.setShaderTexture(0, id);
         MinecraftClient.getInstance().getTextureManager().bindTexture(id);
         //doing texturewidth to a multiple what it actually is like [16 -> 32] and bumping up the width lets you stretch things!
         InGameHud.drawTexture(matrixStack, x, y, 0.0F, 0.0F, scaleX, scaleY, scaleX, scaleY);
-
         matrixStack.pop();
     }
 

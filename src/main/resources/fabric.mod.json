@@ -13,6 +13,9 @@
   "entrypoints": {
     "main": [
       "me.wolfie.odometer.Odometer"
+    ],
+    "client": [
+      "me.wolfie.odometer.OdometerClient"
     ]
   },
   "mixins": [

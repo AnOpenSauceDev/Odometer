@@ -1,3 +1,10 @@
 v1	named	intermediary
+METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(Lnet/minecraft/entity/damage/DamageSource;)Z	isInvulnerableTo	method_5679
+METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	()Lnet/minecraft/entity/player/PlayerInventory;	getInventory	method_31548
+METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(Lnet/minecraft/util/Identifier;I)V	increaseStat	method_7339
+METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(F)V	addExhaustion	method_7322
+METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(F)V	setAbsorptionAmount	method_6073
+METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	()F	getAbsorptionAmount	method_6067
+METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	()Lnet/minecraft/text/Text;	getName	method_5477
 METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(Lnet/minecraft/entity/damage/DamageSource;F)V	applyDamage	method_6074
 METHOD	me/wolfie/odometer/mixins/DisableHearts	(Lnet/minecraft/client/util/math/MatrixStack;)V	renderStatusBars	method_1760

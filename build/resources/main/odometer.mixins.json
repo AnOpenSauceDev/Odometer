@@ -4,12 +4,11 @@
   "package": "me.wolfie.odometer.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "DamageHandlerPlayerEntity",
-    "DisableHearts",
-    "TickHandle"
+    "DamageHandlerPlayerEntity"
   ],
   "client": [
-    "RegenMixin"
+    "RegenMixin",
+    "DisableHearts"
   ],
   "injectors": {
     "defaultRequire": 1

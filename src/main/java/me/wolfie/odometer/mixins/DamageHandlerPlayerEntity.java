@@ -1,9 +1,8 @@
 package me.wolfie.odometer.mixins;
 
-import me.wolfie.odometer.listener.ServerListener;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.DamageUtil;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -11,53 +10,62 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
 
 import static me.wolfie.odometer.Odometer.HealthMap;
-import static me.wolfie.odometer.Odometer.LOGGER;
+import static me.wolfie.odometer.listener.ServerListener.minecraftServer;
 
 @Mixin(PlayerEntity.class)
-public abstract class DamageHandlerPlayerEntity {
-
-    /*
-    @Inject(method = "applyDamage", at = @At("TAIL")) // we actually don't have to run the hash check here- its redundant due to it being set, so dw.
-    public void handleHealthChange(DamageSource source, float amount, CallbackInfo ci) {
-
-        if (MinecraftClient.getInstance().player != null) { // prevent mc utterly and totally nuking itself... again
-
-
-
-
-        }
-
+public abstract class DamageHandlerPlayerEntity extends LivingEntity {
+    protected DamageHandlerPlayerEntity(EntityType<? extends LivingEntity> entityType, World world) {
+        super(entityType, world);
     }
-    */
+
+
+
 
 
     //side note, MOJANG'S SPAGHETTI CODE IS DRIVING ME INSANE. I SPENT 2 DAYS DEBUGGING THIS STUPID MESS, AND NOW I HAVE RE-WRITTEN THE WHOLE METHOD.
+
+
+    @Shadow public abstract boolean isInvulnerableTo(DamageSource damageSource);
+
+    @Shadow public abstract PlayerInventory getInventory();
+
+    @Shadow public abstract void increaseStat(Identifier stat, int amount);
+
+    @Shadow public abstract void addExhaustion(float exhaustion);
+
+    @Shadow public abstract void setAbsorptionAmount(float amount);
+
+    @Shadow public abstract float getAbsorptionAmount();
+
+
+    @Shadow public abstract Text getName();
+
     /**
      * @author no
      * @reason because
      */
     @Overwrite // player will be the replacement, k?
     public void applyDamage(DamageSource source, float amount){
-        PlayerEntity Player = MinecraftClient.getInstance().player;
-        if(Player != null) { // permanently soil a vanilla function forever thanks to one edge-case.
+        if(this != null) { // permanently soil a vanilla function forever thanks to one edge-case.
 
-            if (Player.isInvulnerableTo(source)) {
+            if(this.isInvulnerableTo(source)){
                 return;
             }
+            DamageHandlerPlayerEntity Player = this;
 
 
-            LivingEntity playerLivingEntity = (LivingEntity) Player;  // player = extended LivingEntity
-
-            amount = oh_my_god(source, Player, amount);
-            float f = amount = modifyAppliedDamage(source, amount, Player);
+            amount = oh_my_god(source, this, amount);
+            float f = amount = modifyAppliedDamage(source, amount, this);
             amount = Math.max(amount - Player.getAbsorptionAmount(), 0.0f);
             Player.setAbsorptionAmount(Player.getAbsorptionAmount() - (f - amount));
             float g = f - amount;
@@ -69,11 +77,11 @@ public abstract class DamageHandlerPlayerEntity {
             }
             Player.addExhaustion(source.getExhaustion());
             float h = Player.getHealth();
-            //Player.setHealth(Player.getHealth() - amount); screw this line of code
 
 
-            MinecraftClient player = MinecraftClient.getInstance();
-            HealthMap.put(player.getSession().getUuid(), HealthMap.get(player.getSession().getUuid()) + Double.parseDouble(String.valueOf(amount))); // amount of _damage_ taken. Keep in mind.
+
+
+            HealthMap.put(Player.getUuidAsString(), HealthMap.get(Player.getUuidAsString()) + amount); // amount of _damage_ taken. Keep in mind.
 
             Player.getDamageTracker().onDamage(source, h, amount);
             if (amount < 3.4028235E37f) {
@@ -82,8 +90,9 @@ public abstract class DamageHandlerPlayerEntity {
         }
     }
 
+
     // applyarmortodamage
-    public float oh_my_god(DamageSource source, PlayerEntity playerEntity, float amount){
+    public float oh_my_god(DamageSource source, DamageHandlerPlayerEntity playerEntity, float amount){
         if (!source.bypassesArmor()) {
              damageArmor(source, amount,playerEntity);
             amount = DamageUtil.getDamageLeft(amount, playerEntity.getArmor(), (float)playerEntity.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS));
@@ -91,11 +100,11 @@ public abstract class DamageHandlerPlayerEntity {
         return amount;
     }
 
-    protected void damageArmor(DamageSource source, float amount, PlayerEntity player) {
-        player.getInventory().damageArmor(source, amount, PlayerInventory.ARMOR_SLOTS);
+    protected void damageArmor(DamageSource source, float amount, DamageHandlerPlayerEntity player) {
+        player.getInventory().damageArmor(source,amount,PlayerInventory.ARMOR_SLOTS);
     }
 
-    protected float modifyAppliedDamage(DamageSource source, float amount, PlayerEntity PE) {
+    protected float modifyAppliedDamage(DamageSource source, float amount, DamageHandlerPlayerEntity PE) {
         int i;
         int j;
         float f;
@@ -105,11 +114,15 @@ public abstract class DamageHandlerPlayerEntity {
             return amount;
         }
         if (PE.hasStatusEffect(StatusEffects.RESISTANCE) && source != DamageSource.OUT_OF_WORLD && (h = (g = amount) - (amount = Math.max((f = amount * (float)(j = 25 - (i = (PE.getStatusEffect(StatusEffects.RESISTANCE).getAmplifier() + 1) * 5))) / 25.0f, 0.0f))) > 0.0f && h < 3.4028235E37f) {
-            if (PE instanceof ServerPlayerEntity) {
-                ((ServerPlayerEntity)PE).increaseStat(Stats.DAMAGE_RESISTED, Math.round(h * 10.0f));
-            } else if (source.getAttacker() instanceof ServerPlayerEntity) {
-                ((ServerPlayerEntity)source.getAttacker()).increaseStat(Stats.DAMAGE_DEALT_RESISTED, Math.round(h * 10.0f));
+            if(minecraftServer != null) {
+                if (minecraftServer.getPlayerManager().getPlayer(PE.getName().getString()) != null) {
+                    (minecraftServer.getPlayerManager().getPlayer(PE.getName().getString())).increaseStat(Stats.DAMAGE_RESISTED, Math.round(h * 10.0f));
+                } else if (source.getAttacker() instanceof ServerPlayerEntity) {
+                    ((ServerPlayerEntity) source.getAttacker()).increaseStat(Stats.DAMAGE_DEALT_RESISTED, Math.round(h * 10.0f));
+                }
             }
+
+
         }
         if (amount <= 0.0f) {
             return 0.0f;
