@@ -23,7 +23,7 @@ public class Odometer implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("odometer");
 
     public static float DecaySpeed; // the rate at which we lose health
-    String VERSION = "1.6";
+    String VERSION = "1.5.2";
     public static HashMap<String,Double> HealthMap = new HashMap<>(); // String = UUID, Double = final health (what we go down to)
 
     @Override

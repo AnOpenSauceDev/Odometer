@@ -58,7 +58,7 @@ public class HudRenderCallbackListener implements HudRenderCallback {
             client.textRenderer.draw(matrixStack, Text.of((Math.round(MinecraftClient.getInstance().player.getHealth())) + " (" + (Math.round(MinecraftClient.getInstance().player.getHealth() + client.player.getAbsorptionAmount() - HealthMap.get(client.getSession().getUuid()))) + ")"), Math.toIntExact((long) (width - 250)), height - 68, 0xFFFFFF);
             client.textRenderer.draw(matrixStack, Text.of(String.valueOf(Math.round(MinecraftClient.getInstance().player.getHungerManager().getFoodLevel()))), Math.toIntExact((long) (width - 250)), height - 58, 0xFFFFFF);
             client.textRenderer.draw(matrixStack, Text.of(String.valueOf(Math.round(MinecraftClient.getInstance().player.getAir() / 10))), Math.toIntExact((long) (width - 250 )), height - 48, 0xFFFFFF);
-            client.textRenderer.draw(matrixStack, Text.of(String.valueOf(client.player.experienceLevel + " (" + MinecraftClient.getInstance().player.getNextLevelExperience() + ")")), Math.toIntExact((long) (width - 250 )), height - 38, 0xFFFFFF);
+            client.textRenderer.draw(matrixStack, Text.of(String.valueOf(client.player.experienceLevel + " (" + MinecraftClient.getInstance().player.totalExperience + ")")), Math.toIntExact((long) (width - 250 )), height - 38, 0xFFFFFF);
         }
     }
 
