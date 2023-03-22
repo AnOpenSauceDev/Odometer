@@ -1,4 +1,12 @@
 v1	named	intermediary
+FIELD	me/wolfie/odometer/mixins/DisableHearts	J	heartJumpEndTick	field_2032
+FIELD	me/wolfie/odometer/mixins/DisableHearts	I	ticks	field_2042
+FIELD	me/wolfie/odometer/mixins/DisableHearts	I	lastHealthValue	field_2014
+FIELD	me/wolfie/odometer/mixins/DisableHearts	J	lastHealthCheckTime	field_2012
+FIELD	me/wolfie/odometer/mixins/DisableHearts	I	renderHealthValue	field_2033
+FIELD	me/wolfie/odometer/mixins/DisableHearts	I	scaledWidth	field_2011
+FIELD	me/wolfie/odometer/mixins/DisableHearts	I	scaledHeight	field_2029
+FIELD	me/wolfie/odometer/mixins/DisableHearts	Lnet/minecraft/client/MinecraftClient;	client	field_2035
 FIELD	me/wolfie/odometer/mixins/leaveAndJoinHandlerMixin	Lnet/minecraft/server/MinecraftServer;	server	field_14360
 METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(Lnet/minecraft/entity/damage/DamageSource;)Z	isInvulnerableTo	method_5679
 METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	()Lnet/minecraft/entity/player/PlayerInventory;	getInventory	method_31548
@@ -8,4 +16,8 @@ METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(F)V	setAbsorptionAmo
 METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	()F	getAbsorptionAmount	method_6067
 METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	()Lnet/minecraft/text/Text;	getName	method_5477
 METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(Lnet/minecraft/entity/damage/DamageSource;F)V	applyDamage	method_6074
-METHOD	me/wolfie/odometer/mixins/DisableHearts	(Lnet/minecraft/client/util/math/MatrixStack;)V	renderStatusBars	method_1760
+METHOD	me/wolfie/odometer/mixins/DisableHearts	(Lnet/minecraft/entity/LivingEntity;)I	getHeartCount	method_1744
+METHOD	me/wolfie/odometer/mixins/DisableHearts	()Lnet/minecraft/entity/LivingEntity;	getRiddenEntity	method_1734
+METHOD	me/wolfie/odometer/mixins/DisableHearts	(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/entity/player/PlayerEntity;IIIIFIIIZ)V	renderHealthBar	method_37298
+METHOD	me/wolfie/odometer/mixins/DisableHearts	(I)I	getHeartRows	method_1733
+METHOD	me/wolfie/odometer/mixins/DisableHearts	()Lnet/minecraft/entity/player/PlayerEntity;	getCameraPlayer	method_1737

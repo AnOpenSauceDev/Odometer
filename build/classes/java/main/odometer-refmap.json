@@ -1,21 +1,27 @@
 {
   "mappings": {
-    "me/wolfie/odometer/mixins/leaveAndJoinHandlerMixin": {
-      "onPlayerConnect": "Lnet/minecraft/class_3324;method_14570(Lnet/minecraft/class_2535;Lnet/minecraft/class_3222;)V",
-      "remove": "Lnet/minecraft/class_3324;method_14611(Lnet/minecraft/class_3222;)V"
+    "me/wolfie/odometer/mixins/DisableHearts": {
+      "renderStatusBars": "Lnet/minecraft/class_329;method_1760(Lnet/minecraft/class_4587;)V"
     },
     "me/wolfie/odometer/mixins/RegenMixin": {
       "render": "Lnet/minecraft/class_442;method_25394(Lnet/minecraft/class_4587;IIF)V"
+    },
+    "me/wolfie/odometer/mixins/leaveAndJoinHandlerMixin": {
+      "onPlayerConnect": "Lnet/minecraft/class_3324;method_14570(Lnet/minecraft/class_2535;Lnet/minecraft/class_3222;)V",
+      "remove": "Lnet/minecraft/class_3324;method_14611(Lnet/minecraft/class_3222;)V"
     }
   },
   "data": {
     "named:intermediary": {
-      "me/wolfie/odometer/mixins/leaveAndJoinHandlerMixin": {
-        "onPlayerConnect": "Lnet/minecraft/class_3324;method_14570(Lnet/minecraft/class_2535;Lnet/minecraft/class_3222;)V",
-        "remove": "Lnet/minecraft/class_3324;method_14611(Lnet/minecraft/class_3222;)V"
+      "me/wolfie/odometer/mixins/DisableHearts": {
+        "renderStatusBars": "Lnet/minecraft/class_329;method_1760(Lnet/minecraft/class_4587;)V"
       },
       "me/wolfie/odometer/mixins/RegenMixin": {
         "render": "Lnet/minecraft/class_442;method_25394(Lnet/minecraft/class_4587;IIF)V"
+      },
+      "me/wolfie/odometer/mixins/leaveAndJoinHandlerMixin": {
+        "onPlayerConnect": "Lnet/minecraft/class_3324;method_14570(Lnet/minecraft/class_2535;Lnet/minecraft/class_3222;)V",
+        "remove": "Lnet/minecraft/class_3324;method_14611(Lnet/minecraft/class_3222;)V"
       }
     }
   }

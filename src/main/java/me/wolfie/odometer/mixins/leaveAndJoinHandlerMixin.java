@@ -41,8 +41,6 @@ public class leaveAndJoinHandlerMixin {
 
     @Inject(method = "remove", at = @At("HEAD"))
     public void quit(ServerPlayerEntity player, CallbackInfo ci){ // set their health to what it would tick down to, before quitting
-
-
         player.setHealth(player.getHealth() - HealthMap.get(player.getUuidAsString()).floatValue());
         System.out.println("v = " + (player.getHealth() - HealthMap.get(player.getUuidAsString()).floatValue()));
 HealthMap.put(player.getUuidAsString(),0.0);

@@ -5,8 +5,12 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageSources;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
@@ -26,14 +30,16 @@ public class ServerListener implements ServerTickEvents.EndTick {
         if (!serverPlayerEntity.isDead()) {
             serverPlayerEntity.setHealth(0);
             HealthMap.put(serverPlayerEntity.getUuidAsString(), 0.0);
-            serverPlayerEntity.onDeath(DamageSource.OUT_OF_WORLD);
+            serverPlayerEntity.onDeath(serverPlayerEntity.getRecentDamageSource());
         }
 
     }
 
+    public static float HEALTH_DECAY_CONSTANT;
 
     @Override
     public void onEndTick(MinecraftServer server) {
+        HEALTH_DECAY_CONSTANT = config.decayRate;
         minecraftServer = server; // declare server
 
         List<ServerPlayerEntity> playersList = server.getPlayerManager().getPlayerList();
@@ -44,7 +50,7 @@ public class ServerListener implements ServerTickEvents.EndTick {
             if (HealthMap.get(players[x].getUuidAsString()) != null) {
                 if (HealthMap.get(players[x].getUuidAsString()) > 0) {
                     HealthMap.put(players[x].getUuidAsString(), HealthMap.get(players[x].getUuidAsString()) - 0.2);
-                    players[x].setHealth(players[x].getHealth() - 0.2f);
+                    players[x].setHealth(players[x].getHealth() - HEALTH_DECAY_CONSTANT / 5);
                 }
 
                 if (players[x].getHealth() <= 0) {

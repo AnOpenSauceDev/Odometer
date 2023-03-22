@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "odometer",
-  "version": "1.0-SNAPSHOT",
+  "version": "1.7",
   "name": "Health Odometer",
   "description": "Just like the game!",
   "authors": [],
@@ -16,6 +16,9 @@
     ],
     "client": [
       "me.wolfie.odometer.OdometerClient"
+    ],
+    "modmenu": [
+      "me.wolfie.odometer.ModMenuInt"
     ]
   },
   "mixins": [

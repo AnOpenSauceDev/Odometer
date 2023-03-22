@@ -35,6 +35,5 @@ public class Odometer implements ModInitializer {
         ServerTickEvents.END_SERVER_TICK.register(new ServerListener());
         AutoConfig.register(OdometerConfig.class,GsonConfigSerializer::new);
         config = AutoConfig.getConfigHolder(OdometerConfig.class).getConfig();
-        DecaySpeed = config.decayRate;
     }
 }

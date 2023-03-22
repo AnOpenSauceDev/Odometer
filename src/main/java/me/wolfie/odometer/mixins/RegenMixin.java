@@ -16,17 +16,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static net.minecraft.client.gui.DrawableHelper.drawCenteredText;
+import static net.minecraft.client.gui.DrawableHelper.drawCenteredTextWithShadow;
 
 @Mixin(TitleScreen.class)
 public abstract class RegenMixin {
 
     @Inject(method = "render",at = @At("TAIL"))
     public void WarnPlayer(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci){
-        if (!Odometer.config.disablewarning) { return; }
+        if (Odometer.config.disablewarning) { return; }
         int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
         int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
-        TitleScreen.drawCenteredText(matrices, MinecraftClient.getInstance().textRenderer, Text.of("Notice: Rolling Health is best with NaturalRegeneration OFF."),250,height - 250, 0xFFFFFF);
+        TitleScreen.drawCenteredTextWithShadow(matrices, MinecraftClient.getInstance().textRenderer, Text.of("Notice: Rolling Health is best with NaturalRegeneration OFF."),250,height - 250, 0xFFFFFF);
     }
 
 
