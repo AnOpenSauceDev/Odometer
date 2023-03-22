@@ -14,6 +14,12 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
+   /*
+    flatDir {
+        dirs 'datahandlinglib'
+    }
+
+    */
 }
 
 loom{
@@ -21,6 +27,10 @@ loom{
 }
 
 dependencies {
+    modApi "com.terraformersmc:modmenu:5.0.2"
+    modApi( "me.shedaniel.cloth:cloth-config-fabric:9.0.94")
+    //modImplementation 'me.wolfie.dataentry:1.2'
+
    /*
    modApi("me.shedaniel.cloth:cloth-config-fabric:8.2.88") {
         exclude(group: "net.fabricmc.fabric-api")

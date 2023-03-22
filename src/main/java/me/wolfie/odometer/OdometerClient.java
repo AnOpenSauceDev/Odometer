@@ -9,6 +9,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Identifier;
 
+import java.io.File;
+
 import static me.wolfie.odometer.Odometer.GetHealthValues;
 import static me.wolfie.odometer.Odometer.HealthMap;
 
@@ -26,6 +28,7 @@ public class OdometerClient implements ClientModInitializer {
         }));
 
         HudRenderCallback.EVENT.register(new HudRenderCallbackListener());
+
 
     }
 }

@@ -1,4 +1,5 @@
 v1	named	intermediary
+FIELD	me/wolfie/odometer/mixins/leaveAndJoinHandlerMixin	Lnet/minecraft/server/MinecraftServer;	server	field_14360
 METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(Lnet/minecraft/entity/damage/DamageSource;)Z	isInvulnerableTo	method_5679
 METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	()Lnet/minecraft/entity/player/PlayerInventory;	getInventory	method_31548
 METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(Lnet/minecraft/util/Identifier;I)V	increaseStat	method_7339

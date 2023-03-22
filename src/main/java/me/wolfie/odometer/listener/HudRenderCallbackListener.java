@@ -29,7 +29,9 @@ public class HudRenderCallbackListener implements HudRenderCallback {
 
     @Override
     public void onHudRender(MatrixStack matrixStack, float tickDelta) {
-
+        if(!Odometer.config.customgui){
+            return;
+        }
 
         if (HealthMap.get(MinecraftClient.getInstance().getSession().getUuid()) != null) {
             int width = MinecraftClient.getInstance().getWindow().getScaledWidth();

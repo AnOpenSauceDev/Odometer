@@ -1,5 +1,6 @@
 package me.wolfie.odometer.mixins;
 
+import me.wolfie.odometer.Odometer;
 import net.fabricmc.fabric.mixin.screen.ScreenAccessor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
@@ -22,6 +23,7 @@ public abstract class RegenMixin {
 
     @Inject(method = "render",at = @At("TAIL"))
     public void WarnPlayer(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci){
+        if (!Odometer.config.disablewarning) { return; }
         int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
         int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
         TitleScreen.drawCenteredText(matrices, MinecraftClient.getInstance().textRenderer, Text.of("Notice: Rolling Health is best with NaturalRegeneration OFF."),250,height - 250, 0xFFFFFF);

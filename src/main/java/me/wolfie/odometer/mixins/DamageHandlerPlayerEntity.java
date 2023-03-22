@@ -32,8 +32,6 @@ public abstract class DamageHandlerPlayerEntity extends LivingEntity {
 
 
 
-    //side note, MOJANG'S SPAGHETTI CODE IS DRIVING ME INSANE. I SPENT 2 DAYS DEBUGGING THIS STUPID MESS, AND NOW I HAVE RE-WRITTEN THE WHOLE METHOD.
-
 
     @Shadow public abstract boolean isInvulnerableTo(DamageSource damageSource);
 
@@ -54,7 +52,7 @@ public abstract class DamageHandlerPlayerEntity extends LivingEntity {
      * @author no
      * @reason because
      */
-    @Overwrite // player will be the replacement, k?
+    @Overwrite // jeez this is a mess
     public void applyDamage(DamageSource source, float amount){
         if(this != null) { // permanently soil a vanilla function forever thanks to one edge-case.
 

@@ -1,5 +1,7 @@
 package me.wolfie.odometer;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.wolfie.odometer.listener.HudRenderCallbackListener;
 import me.wolfie.odometer.listener.ServerListener;
 import net.fabricmc.api.ModInitializer;
@@ -22,32 +24,17 @@ public class Odometer implements ModInitializer {
     public static Identifier GetHealthValues = new Identifier("odometer","health_values");
     public static final Logger LOGGER = LoggerFactory.getLogger("odometer");
 
-    public static float DecaySpeed; // the rate at which we lose health
-    String VERSION = "1.5.2";
+    public static float DecaySpeed; // the rate at which we lose health (not implemented as of yet)
+    public static OdometerConfig config;
+    String VERSION = "1.7";
     public static HashMap<String,Double> HealthMap = new HashMap<>(); // String = UUID, Double = final health (what we go down to)
 
     @Override
     public void onInitialize() {
-
-        /*
-        ConfigBuilder builder = ConfigBuilder.create().setTitle(Text.of("yes"));
-        builder.setSavingRunnable(()->{
-
-        });
-
-
-
-        AtomicReference<Float> savedValue = new AtomicReference<>(0.0F);
-        DecaySpeed = savedValue.get();
-        ConfigCategory options = builder.getOrCreateCategory(Text.of("Options"));
-        options.addEntry(builder.entryBuilder().startFloatField(Text.of("decay speed"), savedValue.get()).setDefaultValue(1f).setTooltip(Text.literal("Sets the rate at which health rolls down")).setSaveConsumer(newValue -> savedValue.set(newValue)));
-        
-
-         */
         LOGGER.info("Odometer Version: " + VERSION + " Got loaded..."); // yes im aware of the naming differences, i decided against this name shortly before publishing, and im too lazy to rename all of this
         ServerTickEvents.END_SERVER_TICK.register(new ServerListener());
-
-
-
+        AutoConfig.register(OdometerConfig.class,GsonConfigSerializer::new);
+        config = AutoConfig.getConfigHolder(OdometerConfig.class).getConfig();
+        DecaySpeed = config.decayRate;
     }
 }

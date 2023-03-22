@@ -35,10 +35,10 @@ public class DisableHearts { //... and hunger
      */
 
 
-    @Overwrite
-    private void renderStatusBars(MatrixStack matrices) {
-       //used to be some effort, then i gave up. (10/10 play ngl)
-        return;
+    @Inject(method = "renderStatusBars", at = @At("HEAD"))
+    private void renderStatusBars(MatrixStack matrices, CallbackInfo ci) {
+        if(Odometer.config.customgui)
+       ci.cancel();
     }
 
 
