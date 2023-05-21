@@ -24,9 +24,18 @@
 *.tar.gz
 *.rar
 
+
 #ignore runs
 /run/*
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+.idea/runConfigurations/Minecraft_Server.xml
+.gradle/loom-cache/launch.cfg
+.gradle/7.6/fileHashes/fileHashes.lock
+.gradle/7.6/fileHashes/fileHashes.bin
+.gradle/7.6/executionHistory/executionHistory.lock
+.gradle/7.6/executionHistory/executionHistory.bin
+.gradle/7.6/checksums/sha1-checksums.bin
+.gradle/7.6/checksums/md5-checksums.bin

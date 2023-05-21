@@ -21,7 +21,6 @@ import static me.wolfie.odometer.Odometer.*;
 
 public class ServerListener implements ServerTickEvents.EndTick {
     public static PlayerEntity[] playerEntitiesArray;
-    boolean dead = false;
     public static MinecraftServer minecraftServer;
 
     public static void KillPlayer(PlayerEntity Player) {
@@ -44,7 +43,7 @@ public class ServerListener implements ServerTickEvents.EndTick {
 
         List<ServerPlayerEntity> playersList = server.getPlayerManager().getPlayerList();
         ServerPlayerEntity[] players = new ServerPlayerEntity[playersList.size()];
-        playerEntitiesArray = players;
+        playerEntitiesArray = players; // get players, even though this is literally redundant
         for (int x = 0; x < playersList.size(); x++) {
             players[x] = playersList.get(x);
             if (HealthMap.get(players[x].getUuidAsString()) != null) {

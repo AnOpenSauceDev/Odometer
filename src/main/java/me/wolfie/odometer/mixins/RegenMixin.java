@@ -16,8 +16,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static net.minecraft.client.gui.DrawableHelper.drawCenteredTextWithShadow;
-
 @Mixin(TitleScreen.class)
 public abstract class RegenMixin {
 
