@@ -6,12 +6,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
@@ -93,7 +90,7 @@ public abstract class DamageHandlerPlayerEntity extends LivingEntity {
 
     // applyarmortodamage
     public float oh_my_god(DamageSource source, DamageHandlerPlayerEntity playerEntity, float amount){
-        if (!source.isIn(DamageTypeTags.BYPASSES_ARMOR)) {
+        if (!source.bypassesArmor()) {
              damageArmor(source, amount,playerEntity);
             amount = DamageUtil.getDamageLeft(amount, playerEntity.getArmor(), (float)playerEntity.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS));
         }
@@ -110,10 +107,10 @@ public abstract class DamageHandlerPlayerEntity extends LivingEntity {
         float f;
         float g;
         float h;
-        if (source.isIn(DamageTypeTags.BYPASSES_SHIELD)) {
+        if (source.isUnblockable()) {
             return amount;
         }
-        if (PE.hasStatusEffect(StatusEffects.RESISTANCE) && !PE.getRecentDamageSource().isIn(DamageTypeTags.BYPASSES_INVULNERABILITY) && (h = (g = amount) - (amount = Math.max((f = amount * (float)(j = 25 - (i = (PE.getStatusEffect(StatusEffects.RESISTANCE).getAmplifier() + 1) * 5))) / 25.0f, 0.0f))) > 0.0f && h < 3.4028235E37f) {
+        if (PE.hasStatusEffect(StatusEffects.RESISTANCE) && !PE.getRecentDamageSource().isOutOfWorld() && (h = (g = amount) - (amount = Math.max((f = amount * (float)(j = 25 - (i = (PE.getStatusEffect(StatusEffects.RESISTANCE).getAmplifier() + 1) * 5))) / 25.0f, 0.0f))) > 0.0f && h < 3.4028235E37f) {
             if(minecraftServer != null) {
                 if (minecraftServer.getPlayerManager().getPlayer(PE.getName().getString()) != null) {
                     (minecraftServer.getPlayerManager().getPlayer(PE.getName().getString())).increaseStat(Stats.DAMAGE_RESISTED, Math.round(h * 10.0f));
@@ -127,7 +124,7 @@ public abstract class DamageHandlerPlayerEntity extends LivingEntity {
         if (amount <= 0.0f) {
             return 0.0f;
         }
-        if (source.isIn(DamageTypeTags.BYPASSES_RESISTANCE)) {
+        if (source.bypassesArmor()) {
             return amount;
         }
         i = EnchantmentHelper.getProtectionAmount(PE.getArmorItems(), source);
