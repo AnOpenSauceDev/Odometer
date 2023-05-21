@@ -24,7 +24,7 @@ public abstract class RegenMixin {
     @Inject(method = "render",at = @At("TAIL"))
     public void WarnPlayer(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci){
         if (Odometer.config.disablewarning) { return; }
-        int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
+        //int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
         int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
         TitleScreen.drawCenteredTextWithShadow(matrices, MinecraftClient.getInstance().textRenderer, Text.of("Notice: Rolling Health is best with NaturalRegeneration OFF."),250,height - 250, 0xFFFFFF);
     }
