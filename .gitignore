@@ -9,6 +9,10 @@
 
 /run
 
+./run
+run
+run/*
+*.mca
 /.gradle
 /build
 
