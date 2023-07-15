@@ -1,3 +1,0 @@
-v1	named	intermediary
-METHOD	me/wolfie/odometer/mixins/DamageHandlerPlayerEntity	(Lnet/minecraft/entity/damage/DamageSource;F)V	applyDamage	method_6074
-METHOD	me/wolfie/odometer/mixins/DisableHearts	(Lnet/minecraft/client/util/math/MatrixStack;)V	renderStatusBars	method_1760

@@ -76,14 +76,14 @@ public abstract class DamageHandlerPlayerEntity extends LivingEntity {
                 return;
             }
             Player.addExhaustion(source.getExhaustion());
-            float h = Player.getHealth();
+            // float h = Player.getHealth(); // no DamageTracker longer takes getHealth() as an arg
 
 
 
 
             HealthMap.put(Player.getUuidAsString(), HealthMap.get(Player.getUuidAsString()) + amount); // amount of _damage_ taken. Keep in mind.
 
-            Player.getDamageTracker().onDamage(source, h, amount);
+            Player.getDamageTracker().onDamage(source, amount);
             if (amount < 3.4028235E37f) {
                 Player.increaseStat(Stats.DAMAGE_TAKEN, Math.round(amount * 10.0f));
             }

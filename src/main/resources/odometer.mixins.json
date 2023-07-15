@@ -8,8 +8,7 @@
     "leaveAndJoinHandlerMixin"
   ],
   "client": [
-    "DisableHearts",
-    "RegenMixin"
+    "DisableHearts"
   ],
   "injectors": {
     "defaultRequire": 1

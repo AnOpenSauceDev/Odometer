@@ -11,8 +11,7 @@ import net.minecraft.util.Identifier;
 
 import java.io.File;
 
-import static me.wolfie.odometer.Odometer.GetHealthValues;
-import static me.wolfie.odometer.Odometer.HealthMap;
+import static me.wolfie.odometer.Odometer.*;
 
 @Environment(EnvType.CLIENT)
 public class OdometerClient implements ClientModInitializer {
@@ -20,6 +19,8 @@ public class OdometerClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+
+
 
         HealthMap.put(MinecraftClient.getInstance().getSession().getUuid(),0.0); // default value so the gui won't crash
 

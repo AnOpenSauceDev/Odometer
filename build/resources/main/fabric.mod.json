@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "id": "odometer",
-  "version": "1.7",
+  "version": "1.8",
   "name": "Health Odometer",
   "description": "Just like the game!",
-  "authors": [],
-  "contact": {},
+  "authors": ["AnOpenSauceDev"],
+  "contact": {"github":"https://github.com/AnOpenSauceDev/Odometer"},
   "license": "MIT",
   "icon": "assets/odometer/icon.png",
   "environment": "*",
@@ -27,6 +27,6 @@
   "depends": {
     "fabricloader": ">=0.14.10",
     "fabric": "*",
-    "minecraft": "~1.19"
+    "minecraft": "1.20.x"
   }
 }

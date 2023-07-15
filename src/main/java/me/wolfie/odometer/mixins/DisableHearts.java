@@ -4,7 +4,7 @@ import me.wolfie.odometer.Odometer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
@@ -54,7 +54,7 @@ public abstract class DisableHearts {
 
 
     @Inject(method = "renderStatusBars",at = @At("HEAD"),cancellable = true)
-    private void renderStatusBars(MatrixStack matrices, CallbackInfo ci) {
+    private void renderStatusBars(DrawContext context, CallbackInfo ci) {
         if(Odometer.config.customgui){
             ci.cancel();
         }
@@ -67,8 +67,6 @@ public abstract class DisableHearts {
     @Shadow
     protected abstract LivingEntity getRiddenEntity();
 
-    @Shadow
-    protected abstract void renderHealthBar(MatrixStack matrices, PlayerEntity playerEntity, int m, int o, int r, int v, float f, int i, int j, int p, boolean bl);
 
     @Shadow
     protected abstract int getHeartRows(int x);
