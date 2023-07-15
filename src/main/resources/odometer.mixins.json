@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "me.wolfie.odometer.mixins",
+  "package": "com.modrinth.anopensaucedev.odometer.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "DamageHandlerPlayerEntity",

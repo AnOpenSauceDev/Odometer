@@ -1,4 +1,4 @@
-package me.wolfie.odometer;
+package com.modrinth.anopensaucedev.odometer;
 
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;

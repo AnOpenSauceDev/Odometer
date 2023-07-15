@@ -1,17 +1,16 @@
-package me.wolfie.odometer.mixins;
+package com.modrinth.anopensaucedev.odometer.mixins;
 
+import com.modrinth.anopensaucedev.odometer.Odometer;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.DamageUtil;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
@@ -21,8 +20,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-import static me.wolfie.odometer.Odometer.HealthMap;
-import static me.wolfie.odometer.listener.ServerListener.minecraftServer;
+import static com.modrinth.anopensaucedev.odometer.listener.ServerListener.minecraftServer;
 
 @Mixin(PlayerEntity.class)
 public abstract class DamageHandlerPlayerEntity extends LivingEntity {
@@ -81,7 +79,7 @@ public abstract class DamageHandlerPlayerEntity extends LivingEntity {
 
 
 
-            HealthMap.put(Player.getUuidAsString(), HealthMap.get(Player.getUuidAsString()) + amount); // amount of _damage_ taken. Keep in mind.
+            Odometer.HealthMap.put(Player.getUuidAsString(), Odometer.HealthMap.get(Player.getUuidAsString()) + amount); // amount of _damage_ taken. Keep in mind.
 
             Player.getDamageTracker().onDamage(source, amount);
             if (amount < 3.4028235E37f) {

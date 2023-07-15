@@ -1,4 +1,4 @@
-package me.wolfie.odometer;
+package com.modrinth.anopensaucedev.odometer;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;

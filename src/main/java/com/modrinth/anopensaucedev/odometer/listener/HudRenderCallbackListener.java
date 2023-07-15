@@ -1,27 +1,14 @@
-package me.wolfie.odometer.listener;
+package com.modrinth.anopensaucedev.odometer.listener;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import me.wolfie.odometer.Odometer;
+import com.modrinth.anopensaucedev.odometer.Odometer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.resource.metadata.AnimationResourceMetadata;
-import net.minecraft.client.texture.NativeImage;
-import net.minecraft.client.texture.Sprite;
-import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.client.texture.TextureManager;
-import net.minecraft.client.util.SpriteIdentifier;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
-import org.joml.Matrix4f;
-
-import static me.wolfie.odometer.Odometer.HealthMap;
 
 @Environment(EnvType.CLIENT)
 public class HudRenderCallbackListener implements HudRenderCallback {
@@ -36,14 +23,14 @@ public class HudRenderCallbackListener implements HudRenderCallback {
             return;
         }
 
-        if (HealthMap.get(MinecraftClient.getInstance().getSession().getUuid()) != null) {
+        if (Odometer.HealthMap.get(MinecraftClient.getInstance().getSession().getUuid()) != null) {
             int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
             int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
 
 
             MinecraftClient client = MinecraftClient.getInstance();
 
-            if(MinecraftClient.getInstance().player.getHealth() - HealthMap.get(MinecraftClient.getInstance().getSession().getUuid()) > 0) {
+            if(MinecraftClient.getInstance().player.getHealth() - Odometer.HealthMap.get(MinecraftClient.getInstance().getSession().getUuid()) > 0) {
                 RenderTexture(drawContext,tickDelta, contid, width, height, width - 275, height - 86, 82, 64); // box
             }else {
                 RenderTexture(drawContext, tickDelta, mortallywounded, width, height, width - 275, height - 86, 82, 64); // box
@@ -63,7 +50,7 @@ public class HudRenderCallbackListener implements HudRenderCallback {
             //text block
             // (String text, float x, float y, int color, boolean shadow, Matrix4f matrix, VertexConsumerProvider vertexConsumers, TextLayerType layerType, int backgroundColor, int light)
             client.textRenderer.draw(Text.of(MinecraftClient.getInstance().getSession().getUsername()), Math.toIntExact((long) (width - 259)), height - 77, WHITE,false,drawContext.getMatrices().peek().getPositionMatrix(), drawContext.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL,WHITE,15);
-            client.textRenderer.draw(Text.of((Math.round(MinecraftClient.getInstance().player.getHealth())) + " (" + (Math.round(MinecraftClient.getInstance().player.getHealth() + client.player.getAbsorptionAmount() - HealthMap.get(client.getSession().getUuid()))) + ")"), Math.toIntExact((long) (width - 250)), height - 68, WHITE,false,drawContext.getMatrices().peek().getPositionMatrix(), drawContext.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL,WHITE,15);
+            client.textRenderer.draw(Text.of((Math.round(MinecraftClient.getInstance().player.getHealth())) + " (" + (Math.round(MinecraftClient.getInstance().player.getHealth() + client.player.getAbsorptionAmount() - Odometer.HealthMap.get(client.getSession().getUuid()))) + ")"), Math.toIntExact((long) (width - 250)), height - 68, WHITE,false,drawContext.getMatrices().peek().getPositionMatrix(), drawContext.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL,WHITE,15);
             client.textRenderer.draw(Text.of(String.valueOf(Math.round(MinecraftClient.getInstance().player.getHungerManager().getFoodLevel()))), Math.toIntExact((long) (width - 250)), height - 58, WHITE,false,drawContext.getMatrices().peek().getPositionMatrix(), drawContext.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL,WHITE,15);
             client.textRenderer.draw(Text.of(String.valueOf(Math.round(MinecraftClient.getInstance().player.getAir() / 10))), Math.toIntExact((long) (width - 250 )), height - 48, WHITE,false,drawContext.getMatrices().peek().getPositionMatrix(), drawContext.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL,WHITE,15);
             client.textRenderer.draw(Text.of(String.valueOf(client.player.experienceLevel + " (" + MinecraftClient.getInstance().player.totalExperience + ")")), Math.toIntExact((long) (width - 250 )), height - 38, WHITE,false,drawContext.getMatrices().peek().getPositionMatrix(), drawContext.getVertexConsumers(), TextRenderer.TextLayerType.NORMAL,0,15);

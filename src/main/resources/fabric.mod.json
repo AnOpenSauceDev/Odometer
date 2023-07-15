@@ -12,13 +12,13 @@
   "accessWidener": "odometer.accesswidener",
   "entrypoints": {
     "main": [
-      "me.wolfie.odometer.Odometer"
+      "com.modrinth.anopensaucedev.odometer.Odometer"
     ],
     "client": [
-      "me.wolfie.odometer.OdometerClient"
+      "com.modrinth.anopensaucedev.odometer.OdometerClient"
     ],
     "modmenu": [
-      "me.wolfie.odometer.ModMenuInt"
+      "com.modrinth.anopensaucedev.odometer.ModMenuInt"
     ]
   },
   "mixins": [

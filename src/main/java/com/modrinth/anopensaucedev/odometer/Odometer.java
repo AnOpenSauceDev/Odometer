@@ -1,23 +1,15 @@
-package me.wolfie.odometer;
+package com.modrinth.anopensaucedev.odometer;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-import me.wolfie.odometer.listener.HudRenderCallbackListener;
-import me.wolfie.odometer.listener.ServerListener;
+import com.modrinth.anopensaucedev.odometer.listener.ServerListener;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.spongepowered.asm.mixin.MixinEnvironment;
-import org.spongepowered.asm.mixin.MixinEnvironment.Side;
 
 import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class Odometer implements ModInitializer {
 
