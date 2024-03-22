@@ -1,6 +1,6 @@
 [modrinth](https://modrinth.com/mod/rolling-health)
 # Odometer
-Source code for one of my mods
+Source code for Rolling Health/Odometer
 
 This mod has a planned rewrite for 1.21. Consider this repo dead until then.
 
