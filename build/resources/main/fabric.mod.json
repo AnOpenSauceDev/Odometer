@@ -1,32 +1,30 @@
 {
   "schemaVersion": 1,
   "id": "odometer",
-  "version": "1.8",
-  "name": "Health Odometer",
-  "description": "Just like the game!",
-  "authors": ["AnOpenSauceDev"],
-  "contact": {"github":"https://github.com/AnOpenSauceDev/Odometer"},
-  "license": "MIT",
+  "version": "1.0.0",
+  "name": "Odometer",
+  "description": "Earthbound-style health in minecraft!",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/AnOpenSauceDev/OdometerRewrite"
+  },
+  "license": "GPL-3.0",
   "icon": "assets/odometer/icon.png",
   "environment": "*",
-  "accessWidener": "odometer.accesswidener",
   "entrypoints": {
-    "main": [
-      "com.modrinth.anopensaucedev.odometer.Odometer"
-    ],
     "client": [
-      "com.modrinth.anopensaucedev.odometer.OdometerClient"
+      "dev.anopensauce.odometer.client.OdometerClient"
     ],
-    "modmenu": [
-      "com.modrinth.anopensaucedev.odometer.ModMenuInt"
+    "main": [
+      "dev.anopensauce.odometer.Odometer"
     ]
   },
   "mixins": [
     "odometer.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.10",
+    "fabricloader": ">=0.15.11",
     "fabric": "*",
-    "minecraft": "1.20.x"
+    "minecraft": "1.21"
   }
 }
